@@ -20,6 +20,11 @@ public class FunRestController {
 
     @GetMapping("/harsh")
     public String sayHarsh() {
-        return "Hello " + devName + "! from Java. " + "Your age is " + devAge;
+        return "Hello  " + devName + "! from Java. " + "Your age is " + devAge;
+    }
+
+    @GetMapping("/dev")
+    public String sayDev() {
+        return "Hello Dev! from Java. ";
     }
 }
