@@ -28,4 +28,9 @@ public class DemoController {
         return footballCoach.getDailyWorkout();
     }
 
+    @GetMapping("/soccer")
+    public String getSoccerWorkout() {
+        return soccerCoach.getDailyWorkout();
+    }
+
 }
