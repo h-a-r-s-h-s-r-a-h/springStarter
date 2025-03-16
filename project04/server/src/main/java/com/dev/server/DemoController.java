@@ -9,11 +9,13 @@ public class DemoController {
 
     private Coach cricketCoach;
     private Coach footballCoach;
+    private Coach soccerCoach;
 
     @Autowired
-    public DemoController(CricketCoach cricketCoach, FootballCoach footballCoach) {
+    public DemoController(CricketCoach cricketCoach, FootballCoach footballCoach, SoccerCoach soccerCoach) {
         this.cricketCoach = cricketCoach;
         this.footballCoach = footballCoach;
+        this.soccerCoach = soccerCoach;
     }
 
     @GetMapping("/dailyworkout")
