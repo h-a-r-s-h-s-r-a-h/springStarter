@@ -15,8 +15,9 @@ public class DemoController {
     private Coach footballCoach;
     private Coach soccerCoach;
 
+
     @Autowired
-    public DemoController(CricketCoach cricketCoach, FootballCoach footballCoach, SoccerCoach soccerCoach) {
+    public void setCoach(CricketCoach cricketCoach, FootballCoach footballCoach, SoccerCoach soccerCoach) {
         this.cricketCoach = cricketCoach;
         this.footballCoach = footballCoach;
         this.soccerCoach = soccerCoach;
