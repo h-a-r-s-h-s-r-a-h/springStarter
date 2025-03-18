@@ -1,9 +1,6 @@
 package com.dev.server.rest;
 
 import com.dev.server.common.Coach;
-import com.dev.server.common.CricketCoach;
-import com.dev.server.common.FootballCoach;
-import com.dev.server.common.SoccerCoach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +13,7 @@ public class DemoController {
 
 
     @Autowired
-    public DemoController(@Qualifier("cricketCoach") Coach theCoach) {
+    public DemoController(Coach theCoach) {
         this.myCoach = theCoach;
     }
 
