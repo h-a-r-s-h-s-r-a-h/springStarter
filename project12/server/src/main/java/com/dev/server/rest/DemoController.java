@@ -13,10 +13,10 @@ public class DemoController {
     private Coach cricketCoach;
 
     @Autowired
-    public DemoController(@Qualifier("trackCoach") Coach theCoach, @Qualifier("cricketCoach") Coach myCricketCoach, @Qualifier("cricketCoach") Coach anotherCoach) {
-        myCoach = theCoach;
-        cricketCoach = myCricketCoach;
-        anotherCoach = anotherCoach;
+    public DemoController(@Qualifier("trackCoach") Coach theCoach, @Qualifier("cricketCoach") Coach myCricketCoach, @Qualifier("cricketCoach") Coach anotherCricketCoach) {
+        this.myCoach = theCoach;
+        this.cricketCoach = myCricketCoach;
+        this.anotherCoach = anotherCricketCoach;
     }
 
     @GetMapping("/")
