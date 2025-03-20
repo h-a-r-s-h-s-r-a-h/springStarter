@@ -15,7 +15,7 @@ public class ServerApplication {
     @Bean
     public CommandLineRunner commandLineRunner(String[] args) {
         return runner -> {
-            System.out.println("hello World!");
+            System.out.println("hello World!!");
         };
     }
 
