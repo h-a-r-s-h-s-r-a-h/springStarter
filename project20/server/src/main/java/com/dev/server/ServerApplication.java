@@ -12,88 +12,107 @@ import java.util.List;
 @SpringBootApplication
 public class ServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ServerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ServerApplication.class, args);
+    }
 
-	@Bean
-	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
-		return runner -> {
+    @Bean
+    public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
+        return runner -> {
 //            createStudent(studentDAO);
 //            createMultipleStudent(studentDAO);
 //            readStudent(studentDAO);
 //            queryForStudents(studentDAO);
-			queryForStudentsByLastName(studentDAO);
-		};
-	}
+//			queryForStudentsByLastName(studentDAO);
+            updateStudent(studentDAO);
+        };
+    }
 
-	// Reading from lastName
-	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+    private void updateStudent(StudentDAO studentDAO) {
 
-		// get a list of students
-		List<Student> theStudents = studentDAO.findByLastName("Nunu");
+        // retrieve student based on the id: primary key
+        int studentId = 1;
+        System.out.println("Getting student with id: " + studentId);
+        Student myStudent = studentDAO.findById(studentId);
 
-		// display list of students
-		for (Student tempStudent : theStudents) {
-			System.out.println(tempStudent);
-		}
-	}
+        // change first name to "Nunja"
+        System.out.println("Updating student ...");
+        myStudent.setFirstName("Nunja");
 
-	// Read all student from database
-	private void queryForStudents(StudentDAO studentDAO) {
+        // update the student
+        studentDAO.update(myStudent);
 
-		// get a list of students
-		List<Student> theStudents = studentDAO.findAll();
+        // display the updated student
+        System.out.println("Updated student: " + myStudent);
+    }
 
-		// display list of students
-		for (Student tempStudent : theStudents) {
-			System.out.println(tempStudent);
-		}
-	}
+    // Reading from lastName
+    private void queryForStudentsByLastName(StudentDAO studentDAO) {
 
-	// Saving multiple student
-	private void createMultipleStudent(StudentDAO studentDAO) {
-		System.out.println("Creating new Student object...");
-		Student tempStudent1 = new Student("Palak1", "Nunu", "nunu123@gmail.com");
-		Student tempStudent2 = new Student("Harsh", "dev", "harshvirat894@gmail.com");
-		Student tempStudent3 = new Student("palak2", "kumari", "palak@gmail.com");
+        // get a list of students
+        List<Student> theStudents = studentDAO.findByLastName("Nunu");
 
-		System.out.println("Saving the student...");
-		studentDAO.save(tempStudent1);
-		studentDAO.save(tempStudent2);
-		studentDAO.save(tempStudent3);
+        // display list of students
+        for (Student tempStudent : theStudents) {
+            System.out.println(tempStudent);
+        }
+    }
 
-		System.out.println("Saved student. Generated id: " + tempStudent1.getId());
-		System.out.println("Saved student. Generated id: " + tempStudent2.getId());
-		System.out.println("Saved student. Generated id: " + tempStudent3.getId());
+    // Read all student from database
+    private void queryForStudents(StudentDAO studentDAO) {
 
-	}
+        // get a list of students
+        List<Student> theStudents = studentDAO.findAll();
 
-	// Saving one student
-	private void createStudent(StudentDAO studentDAO) {
-		System.out.println("Creating new Student object...");
-		Student tempStudent = new Student("Palak3", "Nunu", "nunu1234@gmail.com");
+        // display list of students
+        for (Student tempStudent : theStudents) {
+            System.out.println(tempStudent);
+        }
+    }
 
-		System.out.println("Saving the student...");
-		studentDAO.save(tempStudent);
+    // Saving multiple student
+    private void createMultipleStudent(StudentDAO studentDAO) {
+        System.out.println("Creating new Student object...");
+        Student tempStudent1 = new Student("Palak1", "Nunu", "nunu123@gmail.com");
+        Student tempStudent2 = new Student("Harsh", "dev", "harshvirat894@gmail.com");
+        Student tempStudent3 = new Student("palak2", "kumari", "palak@gmail.com");
 
-		System.out.println("Saved student. Generated id: " + tempStudent.getId());
-	}
+        System.out.println("Saving the student...");
+        studentDAO.save(tempStudent1);
+        studentDAO.save(tempStudent2);
+        studentDAO.save(tempStudent3);
 
-	// Reading from Database
-	private void readStudent(StudentDAO studentDAO) {
-		System.out.println("Creating new Student object...");
-		Student tempStudent = new Student("Bruce", "Wayne", "theBatman@gmail.com");
+        System.out.println("Saved student. Generated id: " + tempStudent1.getId());
+        System.out.println("Saved student. Generated id: " + tempStudent2.getId());
+        System.out.println("Saved student. Generated id: " + tempStudent3.getId());
 
-		System.out.println("Saving the student...");
-		studentDAO.save(tempStudent);
+    }
 
-		System.out.println("Saved student. Generated id: " + tempStudent.getId());
+    // Saving one student
+    private void createStudent(StudentDAO studentDAO) {
+        System.out.println("Creating new Student object...");
+        Student tempStudent = new Student("Palak3", "Nunu", "nunu1234@gmail.com");
 
-		int theId = tempStudent.getId();
-		Student myStudent = studentDAO.findById(theId);
+        System.out.println("Saving the student...");
+        studentDAO.save(tempStudent);
+
+        System.out.println("Saved student. Generated id: " + tempStudent.getId());
+    }
+
+    // Reading from Database
+    private void readStudent(StudentDAO studentDAO) {
+        System.out.println("Creating new Student object...");
+        Student tempStudent = new Student("Bruce", "Wayne", "theBatman@gmail.com");
+
+        System.out.println("Saving the student...");
+        studentDAO.save(tempStudent);
+
+        System.out.println("Saved student. Generated id: " + tempStudent.getId());
+
+        int theId = tempStudent.getId();
+        Student myStudent = studentDAO.findById(theId);
 //        Student myStudent = studentDAO.findById(tempStudent.getId());
-		System.out.println("Found the Student: " + myStudent);
-	}
+        System.out.println("Found the Student: " + myStudent);
+    }
 
 }
