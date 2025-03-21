@@ -1,5 +1,7 @@
 package com.dev.server;
 
+import com.dev.server.dao.StudentDAO;
+import com.dev.server.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,10 +15,14 @@ public class ServerApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(String[] args) {
+    public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {
-            System.out.println("hello World!!");
+            createStudent(studentDAO);
         };
+    }
+
+    public void createStudent(StudentDAO studentDAO) {
+
     }
 
 }
