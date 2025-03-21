@@ -22,7 +22,13 @@ public class ServerApplication {
     }
 
     public void createStudent(StudentDAO studentDAO) {
+        System.out.println("Creating new Student object...");
+        Student tempStudent = new Student("Harsh", "dev", "harshvirat894@gmail.com");
 
+        System.out.println("Saving the student...");
+        studentDAO.save(tempStudent);
+
+        System.out.println("Saved student. Generated id: " + tempStudent.getId());
     }
 
 }
