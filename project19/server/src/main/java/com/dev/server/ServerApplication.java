@@ -23,8 +23,21 @@ public class ServerApplication {
 //            createStudent(studentDAO);
 //            createMultipleStudent(studentDAO);
 //            readStudent(studentDAO);
-            queryForStudents(studentDAO);
+//            queryForStudents(studentDAO);
+            queryForStudentsByLastName(studentDAO);
         };
+    }
+
+    // Reading from lastName
+    private void queryForStudentsByLastName(StudentDAO studentDAO) {
+
+        // get a list of students
+        List<Student> theStudents = studentDAO.findByLastName("Nunu");
+
+        // display list of students
+        for (Student tempStudent : theStudents) {
+            System.out.println(tempStudent);
+        }
     }
 
     // Read all student from database
@@ -38,7 +51,6 @@ public class ServerApplication {
             System.out.println(tempStudent);
         }
     }
-
 
     // Saving multiple student
     private void createMultipleStudent(StudentDAO studentDAO) {
@@ -69,6 +81,7 @@ public class ServerApplication {
         System.out.println("Saved student. Generated id: " + tempStudent.getId());
     }
 
+    // Reading from Database
     private void readStudent(StudentDAO studentDAO) {
         System.out.println("Creating new Student object...");
         Student tempStudent = new Student("Bruce", "Wayne", "theBatman@gmail.com");
