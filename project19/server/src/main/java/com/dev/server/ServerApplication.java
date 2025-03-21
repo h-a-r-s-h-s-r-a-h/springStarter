@@ -14,6 +14,8 @@ public class ServerApplication {
         SpringApplication.run(ServerApplication.class, args);
     }
 
+
+
     @Bean
     public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
         return runner -> {

@@ -23,7 +23,7 @@ public class ServerApplication {
     }
 
     // Saving multiple student
-    public void createMultipleStudent(StudentDAO studentDAO) {
+    private void createMultipleStudent(StudentDAO studentDAO) {
         System.out.println("Creating new Student object...");
         Student tempStudent1 = new Student("Palak1", "Nunu", "nunu123@gmail.com");
         Student tempStudent2 = new Student("Harsh", "dev", "harshvirat894@gmail.com");
@@ -41,7 +41,7 @@ public class ServerApplication {
     }
 
     // Saving one student
-    public void createStudent(StudentDAO studentDAO) {
+    private void createStudent(StudentDAO studentDAO) {
         System.out.println("Creating new Student object...");
         Student tempStudent = new Student("Palak3", "Nunu", "nunu1234@gmail.com");
 
