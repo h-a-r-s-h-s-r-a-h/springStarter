@@ -71,9 +71,16 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     @Transactional
     public int deleteByLastname(String theLastName) {
-        int numRowsDeleted = entityManager.createQuery("DELETE FROM Student WHERE lastName=:theData")
-                .setParameter("theData", theLastName)
-                .executeUpdate();
+        int numRowsDeleted = entityManager.createQuery("DELETE FROM Student WHERE lastName=:theData").setParameter("theData", theLastName).executeUpdate();
+
+        return numRowsDeleted;
+    }
+
+    @Override
+    @Transactional
+    public int deleteAll() {
+
+        int numRowsDeleted = entityManager.createQuery("DELETE FROM Student").executeUpdate();
 
         return numRowsDeleted;
     }
