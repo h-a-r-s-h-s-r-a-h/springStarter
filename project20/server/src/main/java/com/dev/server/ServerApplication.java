@@ -37,7 +37,7 @@ public class ServerApplication {
 
         // change first name to "Nunja"
         System.out.println("Updating student ...");
-        myStudent.setFirstName("Nunja");
+        myStudent.setFirstName("Nunji");
 
         // update the student
         studentDAO.update(myStudent);
