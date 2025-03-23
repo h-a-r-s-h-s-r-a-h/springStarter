@@ -23,6 +23,17 @@ public class StudentRestController {
         return studentDAO.findAll();
     }
 
+    @GetMapping("/students/{studentId}")
+    public Student getStudentsByID(@PathVariable int studentId) {
+        Student existingStudent = studentDAO.findById(studentId);
+
+        if (existingStudent == null) {
+            throw new RuntimeException("Student with ID " + studentId + " not found");
+        }
+
+        return existingStudent;
+    }
+
     @PostMapping("/addStudent")
     public String addStudent(@RequestBody Student theStudent) {
         studentDAO.save(theStudent);
