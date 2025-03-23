@@ -1,28 +1,58 @@
 package com.dev.server.rest;
 
+import com.dev.server.dao.StudentDAO;
 import com.dev.server.entity.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class StudentRestController {
 
-    @GetMapping("/students")
-    public List<Student> getStudent() {
+    private StudentDAO studentDAO;
 
-        List<Student> theStudents = new ArrayList<>();
-
-        theStudents.add(new Student("Palak", "nunu"));
-        theStudents.add(new Student("Harsh", "dev"));
-        theStudents.add(new Student("Rabindra", "Choudhary"));
-        theStudents.add(new Student("Chhoti", "Kumari"));
-
-        return theStudents;
+    @Autowired
+    public StudentRestController(StudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
     }
+
+    @GetMapping("/students")
+    public List<Student> getStudents() {
+        return studentDAO.findAll();
+    }
+
+    @PostMapping("/addStudent")
+    public String addStudent(@RequestBody Student theStudent) {
+        studentDAO.save(theStudent);
+        return "Student Added Successfully";
+    }
+
+    @PutMapping("/students")
+    public Student updateStudent(@RequestBody Student theStudent) {
+        // Fetch the existing student from the database
+        Student existingStudent = studentDAO.findById(theStudent.getId());
+
+        if (existingStudent == null) {
+            throw new RuntimeException("Student with ID " + theStudent.getId() + " not found");
+        }
+
+        // Update only the non-null fields
+        if (theStudent.getFirstName() != null) {
+            existingStudent.setFirstName(theStudent.getFirstName());
+        }
+        if (theStudent.getLastName() != null) {
+            existingStudent.setLastName(theStudent.getLastName());
+        }
+        if (theStudent.getEmail() != null) {
+            existingStudent.setEmail(theStudent.getEmail());
+        }
+
+        // Save the updated student
+        studentDAO.update(existingStudent);
+        return existingStudent;
+    }
+
 
 }
