@@ -1,16 +1,19 @@
 package com.dev.server.rest;
 
+import com.dev.server.entity.Student;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/test")
-public class Restcontroller {
+import java.util.List;
 
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "Hello World!";
+@RestController
+@RequestMapping("/api")
+public class StudentRestController {
+
+    @GetMapping("/students")
+    public List<Student> getStudent() {
+        return null;
     }
 
 }
