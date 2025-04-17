@@ -3,6 +3,7 @@ package com.dev.springBoot.server.rest;
 import com.dev.springBoot.server.entity.Employee;
 import com.dev.springBoot.server.service.EmployeeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,6 +69,25 @@ public class EmployeeRestController {
         if (patchPayload.containsKey("id")) {
             throw new RuntimeException("Employee id not allowed in request body - " + employeeId);
         }
-        return null;
+
+        Employee pathedEmployee = apply(patchPayload, tempEmployee);
+
+        Employee dbEmployee = employeeService.save(pathedEmployee);
+
+        return dbEmployee;
+    }
+
+    private Employee apply(Map<String, Object> patchPayload, Employee tempEmployee) {
+
+        // Convert employee object to a JSON object node
+        ObjectNode employeeNode = objectMapper.convertValue(tempEmployee, ObjectNode.class);
+
+        // Convert the patchPayload map to a JSON object node
+        ObjectNode patchNode = objectMapper.convertValue(patchPayload, ObjectNode.class);
+
+        // Merge the patch updates into the employee node
+        employeeNode.setAll(patchNode);
+
+        return objectMapper.convertValue(employeeNode, Employee.class);
     }
 }
