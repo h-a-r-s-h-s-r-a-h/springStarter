@@ -28,7 +28,7 @@ public class StudentRestController {
         Student existingStudent = studentDAO.findById(studentId);
 
         if (existingStudent == null) {
-            throw new RuntimeException("Student with ID " + studentId + " not found");
+            throw new StudentNotFoundException("Student id not found - " + studentId);
         }
 
         return existingStudent;
