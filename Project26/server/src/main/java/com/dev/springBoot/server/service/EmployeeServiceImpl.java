@@ -2,7 +2,6 @@ package com.dev.springBoot.server.service;
 
 import com.dev.springBoot.server.dao.EmployeeRepository;
 import com.dev.springBoot.server.entity.Employee;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
