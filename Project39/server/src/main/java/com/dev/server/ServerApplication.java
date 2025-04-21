@@ -1,6 +1,7 @@
 package com.dev.server;
 
 import com.dev.server.dao.AppDAO;
+import com.dev.server.entity.Course;
 import com.dev.server.entity.Instructor;
 import com.dev.server.entity.InstructorDetail;
 import org.springframework.boot.CommandLineRunner;
@@ -18,17 +19,12 @@ public class ServerApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
-//            createInstructor(appDAO);
-//            createAnotherInstructor(appDAO);
-//            findInstructor(appDAO);
-//            deleteInstructor(appDAO);
-//            findInstructorDetail(appDAO);
-            deleteInstructorDetail(appDAO);
+            createInstructorWithCourses(appDAO);
         };
     }
 
 
-    private void createInstructor(AppDAO appDAO) {
+    private void createInstructorWithCourses(AppDAO appDAO) {
         // create a new Instructor
         Instructor tempInstructor = new Instructor("Harsh", "Choudhary", "harshvirat894@gmail.com");
 
@@ -38,16 +34,23 @@ public class ServerApplication {
         // associate the objects
         tempInstructor.setInstructorDetail(tempInstructorDetail);
 
+        Course tempCourse1 = new Course("Rust for all!");
+        Course tempCourse2 = new Course("Solana for only braves!");
+
+        tempInstructor.add(tempCourse1);
+        tempInstructor.add(tempCourse2);
+
         // save the instructor
-        // this will also save the details object
-        // because of Cascade.ALL
         System.out.println("Saving instructor: " + tempInstructor);
+
+        System.out.println("The courses: " + tempInstructor.getCourses());
+
         appDAO.save(tempInstructor);
 
         System.out.println("Done!");
     }
 
-    private void createAnotherInstructor(AppDAO appDAO) {
+    private void createAnotherInstructorWithCourses(AppDAO appDAO) {
         // create a new Instructor
         Instructor tempInstructor = new Instructor("Palak", "Kumari", "palak@gmail.com");
 
