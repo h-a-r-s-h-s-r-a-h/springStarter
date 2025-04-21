@@ -1,4 +1,4 @@
-package service;
+package com.dev.server.service;
 
 
 import com.dev.server.dao.EmployeeRepository;

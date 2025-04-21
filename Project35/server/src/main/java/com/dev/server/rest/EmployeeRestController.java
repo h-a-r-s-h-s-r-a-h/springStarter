@@ -1,4 +1,4 @@
-package rest;
+package com.dev.server.rest;
 
 
 import com.dev.server.entity.Employee;

@@ -1,4 +1,4 @@
-package dao;
+package com.dev.server.dao;
 
 
 import com.dev.server.entity.Employee;
