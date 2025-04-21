@@ -25,7 +25,8 @@ public class ServerApplication {
 //            createInstructorWithCourses(appDAO);
 //            createAnotherInstructorWithCourses(appDAO);
 //            findInstructorWithCourses(appDAO);
-            findCoursesWithInstructor(appDAO);
+//            findCoursesWithInstructor(appDAO);
+            findInstructorWithCoursesJoinFetch(appDAO);
         };
     }
 
@@ -111,6 +112,20 @@ public class ServerApplication {
         tempInstructor.setCourses(courses);
 
         System.out.println("the associated courses: " + tempInstructor.getCourses());
+        System.out.println("Done!");
+    }
+
+    private void findInstructorWithCoursesJoinFetch(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Finding instructor id: " + theId);
+
+        // find instructor
+        Instructor tempInstructor = appDAO.findInstructorByIdJoinFetch(theId);
+
+        System.out.println("tempInstructor: " + tempInstructor);
+
+        System.out.println("the associated courses: " + tempInstructor.getCourses());
+
         System.out.println("Done!");
     }
 }
