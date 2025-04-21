@@ -1,11 +1,14 @@
 package com.dev.server.dao;
 
+import com.dev.server.entity.Course;
 import com.dev.server.entity.Instructor;
 import com.dev.server.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class AppDAOImpl implements AppDAO {
@@ -57,5 +60,10 @@ public class AppDAOImpl implements AppDAO {
         tempInstructorDetail.getInstructor().setInstructorDetail(null);
 
         entityManager.remove(tempInstructorDetail);
+    }
+
+    @Override
+    public List<Course> findCoursesByInstructorId(int theId) {
+        return null;
     }
 }
