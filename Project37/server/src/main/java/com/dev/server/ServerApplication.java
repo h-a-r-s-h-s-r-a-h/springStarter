@@ -21,9 +21,12 @@ public class ServerApplication {
 //            createInstructor(appDAO);
 //            createAnotherInstructor(appDAO);
 //            findInstructor(appDAO);
-            deleteInstructor(appDAO);
+//            deleteInstructor(appDAO);
+//            findInstructorDetail(appDAO);
+            deleteInstructorDetail(appDAO);
         };
     }
+
 
     private void createInstructor(AppDAO appDAO) {
         // create a new Instructor
@@ -77,6 +80,27 @@ public class ServerApplication {
         System.out.println("Deleting instructor id: " + theId);
 
         appDAO.deleteInstructorById(theId);
+        System.out.println("Done!");
+    }
+
+    private void findInstructorDetail(AppDAO appDAO) {
+        int theId = 2;
+        System.out.println("Finding instructor id: " + theId);
+
+        InstructorDetail tempInstructorDetail = appDAO.findInstructorDetailById(theId);
+
+        System.out.println("tempInstructorDetail: " + tempInstructorDetail);
+        System.out.println("the associated instructor: " + tempInstructorDetail.getInstructor());
+
+        System.out.println("Done!");
+    }
+
+    private void deleteInstructorDetail(AppDAO appDAO) {
+        int theId = 2;
+        System.out.println("Deleting instructor detail id: " + theId);
+
+        appDAO.deleteInstructorDetailById(theId);
+
         System.out.println("Done!");
     }
 
