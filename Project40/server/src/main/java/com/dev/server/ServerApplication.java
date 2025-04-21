@@ -29,7 +29,8 @@ public class ServerApplication {
 //            findInstructorWithCoursesJoinFetch(appDAO);
 //            updateInstructor(appDAO);
 //            updateCourse(appDAO);
-            deleteInstructor(appDAO);
+//            deleteInstructor(appDAO);
+            deleteCourse(appDAO);
         };
     }
 
@@ -168,6 +169,15 @@ public class ServerApplication {
         System.out.println("Deleting instructor id: " + theId);
 
         appDAO.deleteInstructorById(theId);
+
+        System.out.println("Done!");
+    }
+
+    private void deleteCourse(AppDAO appDAO) {
+
+        int theId = 10;
+
+        appDAO.deleteCourseById(theId);
 
         System.out.println("Done!");
     }
