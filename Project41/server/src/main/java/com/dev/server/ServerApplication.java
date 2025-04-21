@@ -4,6 +4,7 @@ import com.dev.server.dao.AppDAO;
 import com.dev.server.entity.Course;
 import com.dev.server.entity.Instructor;
 import com.dev.server.entity.InstructorDetail;
+import com.dev.server.entity.Review;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,15 +23,7 @@ public class ServerApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
-//            createInstructorWithCourses(appDAO);
-//            createAnotherInstructorWithCourses(appDAO);
-//            findInstructorWithCourses(appDAO);
-//            findCoursesWithInstructor(appDAO);
-//            findInstructorWithCoursesJoinFetch(appDAO);
-//            updateInstructor(appDAO);
-//            updateCourse(appDAO);
-//            deleteInstructor(appDAO);
-            deleteCourse(appDAO);
+            createCourseAndReviews(appDAO);
         };
     }
 
@@ -179,6 +172,20 @@ public class ServerApplication {
 
         appDAO.deleteCourseById(theId);
 
+        System.out.println("Done!");
+    }
+
+    private void createCourseAndReviews(AppDAO appDAO) {
+        // create a course
+        Course tempCourse = new Course("How to master Solana!");
+
+        // add some reviews
+        tempCourse.addReview(new Review("Best course ever seen!"));
+        tempCourse.addReview(new Review("Cool course!"));
+        tempCourse.addReview(new Review("Great course!"));
+
+        // save the course
+        appDAO.save(tempCourse);
         System.out.println("Done!");
     }
 }

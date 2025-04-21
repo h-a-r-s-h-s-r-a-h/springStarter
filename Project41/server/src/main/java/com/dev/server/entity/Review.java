@@ -14,9 +14,6 @@ public class Review {
     @Column(name = "comment")
     private String comment;
 
-    @JoinColumn(name = "course_id")
-    private Course course;
-
     public Review() {
     }
 
