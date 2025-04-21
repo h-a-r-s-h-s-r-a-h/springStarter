@@ -20,10 +20,10 @@ public class ServerApplication {
         return runner -> {
 //            createInstructor(appDAO);
 //            createAnotherInstructor(appDAO);
-            findInstructor(appDAO);
+//            findInstructor(appDAO);
+            deleteInstructor(appDAO);
         };
     }
-
 
     private void createInstructor(AppDAO appDAO) {
         // create a new Instructor
@@ -70,6 +70,12 @@ public class ServerApplication {
         Instructor tempInstructor = appDAO.findInstructorById(theId);
         System.out.println("tempInstructor: " + tempInstructor);
         System.out.println("the associated instructorDetail only: " + tempInstructor.getInstructorDetail());
+    }
+
+    private void deleteInstructor(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Deleting instructor id: " + theId);
+
     }
 
 }

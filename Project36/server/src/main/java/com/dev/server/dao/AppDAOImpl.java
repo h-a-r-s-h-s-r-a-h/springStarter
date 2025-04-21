@@ -29,4 +29,14 @@ public class AppDAOImpl implements AppDAO {
         // because of default behaviour of @OneToOne fetch type is eager
         return entityManager.find(Instructor.class, theId);
     }
+
+    @Override
+    @Transactional
+    public void deleteInstructorById(int theId) {
+        Instructor tempInstructor = entityManager.find(Instructor.class, theId);
+
+        // this will also delete the instructor detail object
+        // because of CascadeType.ALL
+        entityManager.remove(tempInstructor);
+    }
 }
