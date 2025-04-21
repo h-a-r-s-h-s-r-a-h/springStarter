@@ -28,7 +28,8 @@ public class ServerApplication {
 //            findCoursesWithInstructor(appDAO);
 //            findInstructorWithCoursesJoinFetch(appDAO);
 //            updateInstructor(appDAO);
-            updateCourse(appDAO);
+//            updateCourse(appDAO);
+            deleteInstructor(appDAO);
         };
     }
 
@@ -158,6 +159,15 @@ public class ServerApplication {
         tempCourse.setTitle("Jyada bakwas karna!");
 
         appDAO.update(tempCourse);
+
+        System.out.println("Done!");
+    }
+
+    private void deleteInstructor(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Deleting instructor id: " + theId);
+
+        appDAO.deleteInstructorById(theId);
 
         System.out.println("Done!");
     }

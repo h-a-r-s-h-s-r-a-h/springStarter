@@ -38,10 +38,18 @@ public class AppDAOImpl implements AppDAO {
     @Override
     @Transactional
     public void deleteInstructorById(int theId) {
+        // retrieve the instructor
         Instructor tempInstructor = entityManager.find(Instructor.class, theId);
 
-        // this will also delete the instructor detail object
-        // because of CascadeType.ALL
+        // get the courses
+        List<Course> courses = tempInstructor.getCourses();
+
+        // break association of all courses for the instructor
+        for (Course tempCourse : courses) {
+            tempCourse.setInstructor(null);
+        }
+
+        // delete the instructor
         entityManager.remove(tempInstructor);
     }
 
