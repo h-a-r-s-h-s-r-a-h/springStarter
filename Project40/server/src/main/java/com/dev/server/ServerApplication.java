@@ -27,7 +27,8 @@ public class ServerApplication {
 //            findInstructorWithCourses(appDAO);
 //            findCoursesWithInstructor(appDAO);
 //            findInstructorWithCoursesJoinFetch(appDAO);
-            updateInstructor(appDAO);
+//            updateInstructor(appDAO);
+            updateCourse(appDAO);
         };
     }
 
@@ -142,6 +143,21 @@ public class ServerApplication {
         tempInstructor.setEmail("imharshvirat15@gmail.com");
 
         appDAO.update(tempInstructor);
+
+        System.out.println("Done!");
+    }
+
+    private void updateCourse(AppDAO appDAO) {
+        int theId = 12;
+
+        // find the course
+        System.out.println("Finding the course: " + theId);
+        Course tempCourse = appDAO.findCourseById(theId);
+
+        // update the course
+        tempCourse.setTitle("Jyada bakwas karna!");
+
+        appDAO.update(tempCourse);
 
         System.out.println("Done!");
     }
