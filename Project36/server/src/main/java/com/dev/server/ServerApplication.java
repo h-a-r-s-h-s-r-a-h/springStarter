@@ -76,6 +76,8 @@ public class ServerApplication {
         int theId = 1;
         System.out.println("Deleting instructor id: " + theId);
 
+        appDAO.deleteInstructorById(theId);
+        System.out.println("Done!");
     }
 
 }
