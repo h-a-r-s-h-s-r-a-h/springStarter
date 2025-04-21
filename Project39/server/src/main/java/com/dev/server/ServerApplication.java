@@ -20,7 +20,8 @@ public class ServerApplication {
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
 //            createInstructorWithCourses(appDAO);
-            createAnotherInstructorWithCourses(appDAO);
+//            createAnotherInstructorWithCourses(appDAO);
+            findInstructorWithCourses(appDAO);
         };
     }
 
@@ -73,6 +74,18 @@ public class ServerApplication {
         System.out.println("The courses: " + tempInstructor.getCourses());
 
         appDAO.save(tempInstructor);
+
+        System.out.println("Done!");
+    }
+
+    public void findInstructorWithCourses(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Finding instructor id: " + theId);
+
+        Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+        System.out.println("tempInstructor: " + tempInstructor);
+        System.out.println("the associated courses: " + tempInstructor.getCourses());
 
         System.out.println("Done!");
     }
