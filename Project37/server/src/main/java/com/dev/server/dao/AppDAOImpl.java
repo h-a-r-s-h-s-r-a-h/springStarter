@@ -1,6 +1,7 @@
 package com.dev.server.dao;
 
 import com.dev.server.entity.Instructor;
+import com.dev.server.entity.InstructorDetail;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,10 @@ public class AppDAOImpl implements AppDAO {
         // this will also delete the instructor detail object
         // because of CascadeType.ALL
         entityManager.remove(tempInstructor);
+    }
+
+    @Override
+    public InstructorDetail findInstructorDetailById(int theId) {
+        return entityManager.find(InstructorDetail.class, theId);
     }
 }
