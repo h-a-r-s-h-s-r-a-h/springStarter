@@ -9,6 +9,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Arrays;
+import java.util.List;
+
 @SpringBootApplication
 public class ServerApplication {
 
@@ -21,7 +24,8 @@ public class ServerApplication {
         return runner -> {
 //            createInstructorWithCourses(appDAO);
 //            createAnotherInstructorWithCourses(appDAO);
-            findInstructorWithCourses(appDAO);
+//            findInstructorWithCourses(appDAO);
+            findCoursesWithInstructor(appDAO);
         };
     }
 
@@ -87,6 +91,26 @@ public class ServerApplication {
         System.out.println("tempInstructor: " + tempInstructor);
         System.out.println("the associated courses: " + tempInstructor.getCourses());
 
+        System.out.println("Done!");
+    }
+
+    public void findCoursesWithInstructor(AppDAO appDAO) {
+        int theId = 1;
+        System.out.println("Finding instructor id: " + theId);
+
+        // find instructor
+        Instructor tempInstructor = appDAO.findInstructorById(theId);
+
+        System.out.println("tempInstructor: " + tempInstructor);
+
+        // find courses for instructor
+        System.out.println("Finding courses for instructor id: " + theId);
+        List<Course> courses = appDAO.findCoursesByInstructorId(theId);
+
+        // associate the objects
+        tempInstructor.setCourses(courses);
+
+        System.out.println("the associated courses: " + tempInstructor.getCourses());
         System.out.println("Done!");
     }
 }
