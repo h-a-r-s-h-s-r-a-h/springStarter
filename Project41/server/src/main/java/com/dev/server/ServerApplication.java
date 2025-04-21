@@ -23,10 +23,12 @@ public class ServerApplication {
     @Bean
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
         return runner -> {
-            createCourseAndReviews(appDAO);
+//            createCourseAndReviews(appDAO);
+//            retriveCourseAndReviews(appDAO);
+            deleteCourseAndReviews(appDAO);
         };
-    }
 
+    }
 
     private void createInstructorWithCourses(AppDAO appDAO) {
         // create a new Instructor
@@ -186,6 +188,28 @@ public class ServerApplication {
 
         // save the course
         appDAO.save(tempCourse);
+        System.out.println("Done!");
+    }
+
+    private void retriveCourseAndReviews(AppDAO appDAO) {
+        // get the course and reviews
+        int theId = 10;
+        Course tempCourse = appDAO.findCourseAndReviewsByCourseId(theId);
+
+        // print the course
+        System.out.println(tempCourse);
+
+        // print the reviews
+        System.out.println(tempCourse.getReviews());
+    }
+
+    private void deleteCourseAndReviews(AppDAO appDAO) {
+        int theId = 10;
+
+        System.out.println("Deleting course id: " + theId);
+
+        appDAO.deleteCourseById(theId);
+
         System.out.println("Done!");
     }
 }
